@@ -1,0 +1,10 @@
+{
+  "name": "js-testrunners-bench",
+  "version": "0.1.0",
+  "description": "Javascript test runners benchmark",
+  "author": {
+    "name": "Vitaliy Potapov",
+    "email": "noginsk@rambler.ru"
+  },
+  "license": "MIT"
+}
