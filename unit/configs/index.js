@@ -2,7 +2,7 @@
  * Returns expanded configs
  */
 
-const utils = require('../utils');
+const utils = require('../../utils');
 
 module.exports = expand([
   require('./sync'),

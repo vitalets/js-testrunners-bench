@@ -1,5 +1,5 @@
 /**
- * Generates array of random values and returns it one by one
+ * Pre-generates array of random values and returns it one by one
  */
 
 class Randomizer {

@@ -9,6 +9,5 @@ module.exports = [
   require('./jasmine'),
   require('./ava'),
   require('./tape'),
-  require('./sheeva'),
   require('./jest'),
 ];
