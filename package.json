@@ -1,10 +1,32 @@
 {
   "name": "js-testrunners-bench",
   "version": "0.1.0",
-  "description": "Javascript test runners benchmark",
+  "description": "Javascript testrunners benchmark",
   "author": {
     "name": "Vitaliy Potapov",
     "email": "noginsk@rambler.ru"
+  },
+  "dependencies": {
+    "ava": "^0.19.1",
+    "chalk": "^1.1.3",
+    "columnify": "^1.5.4",
+    "fs-extra": "^3.0.1",
+    "http-server": "^0.9.0",
+    "jasmine": "^2.6.0",
+    "jest": "^20.0.0",
+    "mocha": "^3.3.0",
+    "mocha-parallel-tests": "^1.2.9",
+    "mocha.parallel": "^0.15.2",
+    "shelljs": "^0.7.7",
+    "tape": "^4.6.3",
+    "selenium-standalone": "^6.0.1",
+    "selenium-webdriver": "^3.4.0",
+    "wdio-mocha-framework": "^0.5.8",
+    "webdriverio": "^4.6.2"
+  },
+  "devDependencies": {},
+  "jest": {
+    "testRegex": "\\.js$"
   },
   "license": "MIT"
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head>
+  <title>Loading...</title>
+</head>
+<body>
+<h1>Loading...</h1>
+<script>
+    const url = new URL(location.href);
+    const delay = parseInt(url.searchParams.get('delay'), 10) || 0;
+    setTimeout(() => {
+      document.title = 'Loaded.';
+      document.querySelector('h1').textContent = 'Loaded.';
+    }, delay);
+</script>
+</body>
