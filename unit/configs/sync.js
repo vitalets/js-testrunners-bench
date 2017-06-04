@@ -8,10 +8,10 @@ module.exports = {
   generate: {
     filesCount: 50,
     nestedSuites: [0, 1],
-    hooks: [0, 0.5, 1],
-    testsInSuite: 5,
     suitesInSuite: 2,
-    fn: 'syncFn',
+    testsInSuite: 5,
+    hooks: [0, 0.5, 1],
+    testFn: 'syncFn',
   },
 
   run: [

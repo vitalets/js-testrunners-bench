@@ -8,11 +8,11 @@ module.exports = {
   generate: {
     filesCount: 50,
     nestedSuites: [0, 1],
-    delay: [0, '0-10'],
-    hooks: [0, 0.5, 1],
-    testsInSuite: 5,
     suitesInSuite: 2,
-    fn: 'asyncFn',
+    testsInSuite: 5,
+    hooks: [0, 0.5, 1],
+    delay: [0, '0-10'],
+    testFn: 'asyncFn',
   },
 
   run: [

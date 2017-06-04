@@ -14,6 +14,10 @@ class Paths {
     this._testingType = type;
   }
 
+  getTestingTypePath() {
+    return path.join(TESTS_DIR, this._testingType);
+  }
+
   getTestsPath(config, runnerName) {
     return path.join(TESTS_DIR, this._testingType, config.name, runnerName, config.generate.name);
   }

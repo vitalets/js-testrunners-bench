@@ -24,7 +24,6 @@ module.exports = class Generator {
     if (!this._getFn()) {
       return;
     }
-    fs.emptyDirSync(this._testsPath);
     this._createFiles();
     console.log(`Generated ${this._config.filesCount} files in ${this._testsPath}`);
   }
@@ -48,7 +47,7 @@ module.exports = class Generator {
       throw new Error(`Empty file: ${fullPath}`);
     }
 
-    fs.writeFileSync(fullPath, fileContent);
+    fs.outputFileSync(fullPath, fileContent);
   }
 
   _getSuite(suiteName, suiteLevel) {
@@ -101,8 +100,10 @@ module.exports = class Generator {
   }
 
   _getFn() {
-    const fn = this._runner[this._config.fn];
-    return fn.replace('{delay}', this._getDelay());
+    const fn = this._runner[this._config.testFn].toString();
+    return fn
+      .replace('{url}', this._config.url)
+      .replace('{delay}', this._getDelay());
   }
 
   _getDelay() {

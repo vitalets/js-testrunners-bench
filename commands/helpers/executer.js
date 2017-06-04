@@ -8,8 +8,9 @@ const {exec} = require('shelljs');
 const paths = require('./paths');
 
 module.exports = class Executer {
-  constructor(config) {
+  constructor(config, runners) {
     this._config = config;
+    this._runners = runners;
     this._results = [];
   }
 
@@ -25,9 +26,7 @@ module.exports = class Executer {
       console.log(`Path does not exist: ${testsPath}`);
       return;
     }
-    if (runInfo.runner === 'jasmine') {
-      updateJasmineConfig(testsPath);
-    }
+    this._writeRunnerConfigFile(testsPath, runInfo);
     const cmd = runInfo.cmd.replace('{path}', testsPath);
     console.log(`Running: ${process.env.BENCH_DEBUG ? cmd : label}`);
     const result = {
@@ -35,6 +34,13 @@ module.exports = class Executer {
       time: mesureCmd(cmd)
     };
     this._results.push(result);
+  }
+
+  _writeRunnerConfigFile(testsPath, runInfo) {
+    const runner = this._runners.find(runner => runner.name === runInfo.runner);
+    if (runner.writeConfigFile) {
+      runner.writeConfigFile(testsPath, runInfo);
+    }
   }
 };
 
@@ -65,15 +71,4 @@ function assertOk(cmd, output) {
     console.log(`Error in output! COMMAND: ${cmd}`);
     process.exit(1);
   }
-}
-
-function updateJasmineConfig(testsDir) {
-  const config = {
-    spec_dir: testsDir,
-    spec_files: [
-      '**/*.js'
-    ]
-  };
-  const filename = './temp/jasmine.json';
-  fs.outputJsonSync(filename, config);
 }

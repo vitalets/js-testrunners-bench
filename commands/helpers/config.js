@@ -41,7 +41,7 @@ function expandConfig(baseConfig) {
  */
 function expandArrayProps(obj) {
   const subObjects = [];
-  const keys = Object.keys(obj);
+  const keys = Object.keys(obj).sort();
   for (let i = 0; i < keys.length; i++) {
     const prop = keys[i];
     const value = obj[prop];

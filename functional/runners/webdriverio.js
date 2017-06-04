@@ -12,7 +12,7 @@ module.exports = {
   suite: `describe('{name}', function () { {content} });`,
   test: `it('{name}', {fn});`,
   loadPageFn: function () {
-    browser.url('{baseUrl}?delay={delay}');
+    browser.url('{url}?delay={delay}');
     browser.waitUntil(function () {
       return browser.getTitle() === 'Loaded.';
     }, 10000);

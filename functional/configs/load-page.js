@@ -8,35 +8,29 @@ module.exports = {
   generate: {
     filesCount: 5,
     nestedSuites: 0,
-    delay: [0, '0-500'],
     hooks: 0,
     testsInSuite: 3,
     suitesInSuite: 1,
-    fn: 'loadPageFn',
+    url: 'http://localhost:8080',
+    delay: [0, '0-200'],
+    testFn: 'loadPageFn',
   },
 
   run: [
     {
-      runner: 'sheeva',
-      cmd: 'sheeva --config=temp/sheeva.config.js {path}',
+      runner: 'webdriverio',
+      label: 'webdriverio (concurrency=3)',
+      cmd: 'wdio temp/wdio.conf.js',
       config: {
-        concurrency: 3
-      }
-    },
-    {
-      runner: 'sheeva',
-      label: 'sheeva (newSessionPerFile)',
-      cmd: 'sheeva --config=temp/sheeva.config.js {path}',
-      config: {
-        concurrency: 3,
-        newSessionPerFile: true
+        maxInstances: 3
       }
     },
     {
       runner: 'webdriverio',
+      label: 'webdriverio (concurrency=5)',
       cmd: 'wdio temp/wdio.conf.js',
       config: {
-        maxInstances: 3
+        maxInstances: 5
       }
     },
   ]
