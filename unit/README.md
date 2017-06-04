@@ -9,7 +9,8 @@ Javascript testrunners benchmark for unit testing.
 * [jest](https://github.com/facebook/jest)
 * [mocha-parallel-tests](https://github.com/yandex/mocha-parallel-tests)
 * [mocha.parallel](https://github.com/danielstjules/mocha.parallel)
-
+* todo [qunit](https://github.com/qunitjs/qunit)
+* todo [lab](https://github.com/hapijs/lab)
  
 ## Tests
 To ensure comprehensive benchmarking, tests are generated as combination of several parameters: 

@@ -16,7 +16,6 @@ Tests are divided onto two groups:
 * [jest](https://github.com/facebook/jest)
 * [mocha-parallel-tests](https://github.com/yandex/mocha-parallel-tests)
 * [mocha.parallel](https://github.com/danielstjules/mocha.parallel)
-* [qunit](https://github.com/qunitjs/qunit)
 
 Inspect [unit](/unit) directory for details.
 
