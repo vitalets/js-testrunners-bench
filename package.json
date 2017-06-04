@@ -7,13 +7,11 @@
     "email": "noginsk@rambler.ru"
   },
   "scripts": {
-    "unit-generate": "node unit/generate",
-    "sync": "node src/run sync 'nestedSuites=0_hooks=0'",
-    "async": "node src/run async 'nestedSuites=0_delay=0-10_hooks=0'",
-    "sync-all": "node src/run sync",
-    "async-all": "node src/run async",
-    "sync-debug": "BENCH_DEBUG=true npm run sync",
-    "async-debug": "BENCH_DEBUG=true npm run async",
+    "unit-generate": "node commands/generate unit",
+    "unit-bench-sync": "node commands/bench unit sync 'nestedSuites=0_hooks=0'",
+    "unit-bench-async": "node commands/bench unit async 'nestedSuites=0_delay=0-10_hooks=0'",
+    "unit-bench-sync-all": "node commands/bench unit sync",
+    "unit-bench-async-all": "node commands/bench unit async",
 
     "func-generate": "node functional/generate"
   },

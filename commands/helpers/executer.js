@@ -5,29 +5,37 @@
 const path = require('path');
 const fs = require('fs-extra');
 const {exec} = require('shelljs');
+const paths = require('./paths');
 
-const TESTS_DIR = 'tests';
+module.exports = class Executer {
+  constructor(config) {
+    this._config = config;
+    this._results = [];
+  }
 
-module.exports = function (config) {
-  const results = config.run.reduce((res, runInfo) => {
-    const testsPath = path.join(TESTS_DIR, config.name, runInfo.runner, config.generate.name);
+  mesure() {
+    this._config.run.forEach(runInfo => this._mesureRunner(runInfo));
+    return this._results.sort((a, b) => a.time - b.time);
+  }
+
+  _mesureRunner(runInfo) {
+    const testsPath = paths.getTestsPath(this._config, runInfo.runner);
     const label = runInfo.label || runInfo.runner;
     if (!fs.existsSync(testsPath)) {
-      console.log(`Skipping: ${label}`);
-      return res;
+      console.log(`Path does not exist: ${testsPath}`);
+      return;
     }
     if (runInfo.runner === 'jasmine') {
       updateJasmineConfig(testsPath);
     }
     const cmd = runInfo.cmd.replace('{path}', testsPath);
     console.log(`Running: ${process.env.BENCH_DEBUG ? cmd : label}`);
-    const item = {
+    const result = {
       runner: label,
       time: mesureCmd(cmd)
     };
-    return res.concat([item]);
-  }, []);
-  return results.sort((a, b) => a.time - b.time);
+    this._results.push(result);
+  }
 };
 
 function mesureCmd(cmd, count = 1) {

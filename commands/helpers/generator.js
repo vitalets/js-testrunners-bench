@@ -4,12 +4,13 @@
 const fs = require('fs-extra');
 const path = require('path');
 const randomizer = require('./randomizer');
+const paths = require('./paths');
 
 module.exports = class Generator {
-  constructor(testsPath, config, runner) {
-    this._config = config;
+  constructor(config, runner) {
+    this._config = config.generate;
     this._runner = runner;
-    this._testsPath = testsPath;
+    this._testsPath = paths.getTestsPath(config, runner.name);
     randomizer.reset();
   }
 
