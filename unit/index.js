@@ -16,5 +16,6 @@ exports.runners = [
   require('./runners/lab'),
   require('./runners/ava'),
   require('./runners/tape'),
+  require('./runners/tap'),
   require('./runners/jest'),
 ];

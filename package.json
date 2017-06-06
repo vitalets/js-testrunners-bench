@@ -35,6 +35,7 @@
     "selenium-standalone": "^6.0.1",
     "selenium-webdriver": "^3.4.0",
     "shelljs": "^0.7.7",
+    "tap": "^10.3.3",
     "tape": "^4.6.3",
     "wdio-mocha-framework": "^0.5.8",
     "webdriverio": "^4.6.2"
