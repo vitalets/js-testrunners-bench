@@ -22,6 +22,7 @@ module.exports = {
     {runner: 'mocha-parallel-tests', cmd: 'mocha-parallel-tests {path}'},
     {runner: 'qunit', cmd: 'qunit {path}'},
     {runner: 'tape', cmd: 'tape {path}/*.js'},
+    {label: 'lab (parallel)', runner: 'lab', cmd: 'lab --parallel {path}'},
     // {runner: 'ava', cmd: 'ava {path}'},
     // {runner: 'jest', cmd: 'jest {path}'},
   ]

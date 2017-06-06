@@ -1,3 +1,10 @@
+/**
+ * Qunit.
+ *
+ * Does not support concurrency:
+ * https://github.com/qunitjs/qunit/issues/947
+ */
+
 module.exports = {
   name: 'qunit',
   hooks: [

@@ -6,11 +6,12 @@ Javascript testrunners benchmark for unit testing.
 * [jasmine](https://github.com/jasmine/jasmine)
 * [ava](https://github.com/avajs/ava)
 * [tape](https://github.com/substack/tape)
+* todo [tap](https://github.com/tapjs/node-tap)
 * [jest](https://github.com/facebook/jest)
 * [mocha-parallel-tests](https://github.com/yandex/mocha-parallel-tests)
 * [mocha.parallel](https://github.com/danielstjules/mocha.parallel)
 * [qunit](https://github.com/qunitjs/qunit)
-* todo [lab](https://github.com/hapijs/lab)
+* [lab](https://github.com/hapijs/lab)
  
 ## Tests
 To ensure comprehensive benchmarking, tests are generated as combination of several parameters: 

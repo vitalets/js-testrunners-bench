@@ -1,8 +1,11 @@
 /**
- * Tape runner.
+ * Tape.
  *
- * Tape does not support hooks:
+ * Does not support hooks:
  * https://github.com/substack/tape/issues/59
+ *
+ * Does not support concurrency:
+ * https://github.com/substack/tape/issues/78
  */
 
 module.exports = {
