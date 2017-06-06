@@ -22,13 +22,13 @@ module.exports = class Executer {
   _mesureRunner(runInfo) {
     const testsPath = paths.getTestsPath(this._config, runInfo.runner);
     const label = runInfo.label || runInfo.runner;
+    const cmd = runInfo.cmd.replace('{path}', testsPath);
     if (!fs.existsSync(testsPath)) {
-      console.log(`Path does not exist: ${testsPath}`);
+      console.log(`Skipping: ${label} ( ${cmd} ) - path does not exist: ${testsPath}`);
       return;
     }
-    this._writeRunnerConfigFile(testsPath, runInfo);
-    const cmd = runInfo.cmd.replace('{path}', testsPath);
     console.log(`Running: ${label} ( ${cmd} )`);
+    this._writeRunnerConfigFile(testsPath, runInfo);
     const result = {
       runner: label,
       time: mesureCmd(cmd)
