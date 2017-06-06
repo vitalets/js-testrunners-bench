@@ -12,6 +12,7 @@ exports.runners = [
   require('./runners/mocha.parallel'),
   require('./runners/mocha-parallel-tests'),
   require('./runners/jasmine'),
+  require('./runners/qunit'),
   require('./runners/ava'),
   require('./runners/tape'),
   require('./runners/jest'),

@@ -18,9 +18,10 @@ exports.printRunners = function (config) {
   config.run.forEach(runInfo => {
     const exists = versions.some(v => v.runner === runInfo.runner);
     if (!exists) {
+      const npmModule = runInfo.runner === 'qunit' ? 'qunitjs' : runInfo.runner;
       versions.push({
         runner: runInfo.runner,
-        version: require(`${runInfo.runner}/package.json`).version,
+        version: require(`${npmModule}/package.json`).version,
       });
     }
   });

@@ -13,13 +13,11 @@
     "unit-bench-async": "node commands/bench unit async 'delay=0-10_hooks=0_nestedSuites=0'",
     "unit-bench-sync-all": "node commands/bench unit sync",
     "unit-bench-async-all": "node commands/bench unit async",
-
     "func-generate": "node commands/generate functional",
     "func-bench": "npm run func-bench-load-page",
     "func-bench-load-page": "node commands/bench functional load-page 'delay=0-200'",
     "selenium": "selenium-standalone start",
     "static": "http-server ./functional/static"
-
   },
   "dependencies": {
     "ava": "^0.19.1",
@@ -32,10 +30,11 @@
     "mocha": "^3.3.0",
     "mocha-parallel-tests": "^1.2.9",
     "mocha.parallel": "^0.15.2",
-    "shelljs": "^0.7.7",
-    "tape": "^4.6.3",
+    "qunitjs": "^2.3.3",
     "selenium-standalone": "^6.0.1",
     "selenium-webdriver": "^3.4.0",
+    "shelljs": "^0.7.7",
+    "tape": "^4.6.3",
     "wdio-mocha-framework": "^0.5.8",
     "webdriverio": "^4.6.2"
   },

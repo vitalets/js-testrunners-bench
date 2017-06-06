@@ -18,8 +18,9 @@ module.exports = {
     {runner: 'mocha', cmd: 'mocha {path}'},
     {runner: 'jasmine', cmd: 'jasmine JASMINE_CONFIG_PATH=temp/jasmine.json'},
     {runner: 'tape', cmd: 'tape {path}/*.js'},
-    {runner: 'ava', cmd: 'ava {path}'},
-    {runner: 'jest', cmd: 'jest {path}'},
+    {runner: 'qunit', cmd: 'qunit {path}'},
+    //{runner: 'ava', cmd: 'ava {path}'},
+    //{runner: 'jest', cmd: 'jest {path}'},
   ]
 };
 

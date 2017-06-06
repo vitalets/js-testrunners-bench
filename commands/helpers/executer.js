@@ -28,7 +28,7 @@ module.exports = class Executer {
     }
     this._writeRunnerConfigFile(testsPath, runInfo);
     const cmd = runInfo.cmd.replace('{path}', testsPath);
-    console.log(`Running: ${process.env.BENCH_DEBUG ? cmd : label}`);
+    console.log(`Running: ${label} ( ${cmd} )`);
     const result = {
       runner: label,
       time: mesureCmd(cmd)
