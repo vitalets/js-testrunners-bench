@@ -27,6 +27,6 @@ report.printFooter();
 
 function mesureConfig(config) {
   report.printConfigHeader(config);
-  const results = new Executer(config, runners).mesure();
-  report.printConfigResults(results);
+  const result = new Executer(config, runners).mesure();
+  report.printConfigResult(result);
 }

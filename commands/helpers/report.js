@@ -15,15 +15,17 @@ exports.printHeader = function (text) {
 
 exports.printRunners = function (config) {
   const versions = [];
-  config.run.forEach(runInfo => {
-    const exists = versions.some(v => v.runner === runInfo.runner);
-    if (!exists) {
-      const npmModule = runInfo.runner === 'qunit' ? 'qunitjs' : runInfo.runner;
-      versions.push({
-        runner: runInfo.runner,
-        version: require(`${npmModule}/package.json`).version,
-      });
-    }
+  Object.keys(config.bench).forEach(benchName => {
+    config.bench[benchName].forEach(runInfo => {
+      const exists = versions.some(v => v.runner === runInfo.runner);
+      if (!exists) {
+        const npmModule = runInfo.runner === 'qunit' ? 'qunitjs' : runInfo.runner;
+        versions.push({
+          runner: runInfo.runner,
+          version: require(`${npmModule}/package.json`).version,
+        });
+      }
+    });
   });
   console.log(columnify(versions));
   console.log('');
@@ -37,18 +39,21 @@ exports.printConfigHeader = function (config) {
   console.log(chalk.bold(line));
 };
 
-exports.printConfigResults = function (results) {
-  if (results.length) {
-    results = results.slice();
-    const {runner, time} = results[0];
-    results[0] = {
-      runner: chalk.green.bold(runner),
-      time: chalk.green.bold(time),
-    };
-  }
-  console.log('');
-  console.log(columnify(results));
-  console.log('');
+exports.printConfigResult = function (result) {
+  result.forEach(res => {
+    const times = res.times.slice();
+    if (times.length) {
+      const {runner, time} = times[0];
+      times[0] = {
+        runner: chalk.green.bold(runner),
+        time: chalk.green.bold(time),
+      };
+    }
+    console.log('');
+    console.log(chalk.bold(`benchName: ${res.benchName}`));
+    console.log(columnify(times));
+    console.log('');
+  });
 };
 
 exports.printFooter = function () {

@@ -5,18 +5,36 @@
 const path = require('path');
 const fs = require('fs-extra');
 const {exec} = require('shelljs');
+const chalk = require('chalk');
 const paths = require('./paths');
 
 module.exports = class Executer {
   constructor(config, runners) {
     this._config = config;
     this._runners = runners;
-    this._results = [];
+    this._result = [];
   }
 
   mesure() {
-    this._config.run.forEach(runInfo => this._mesureRunner(runInfo));
-    return this._results.sort((a, b) => a.time - b.time);
+    Object.keys(this._config.bench).forEach(benchName => this._mesureRunners(benchName));
+    return this._result;
+  }
+
+  _mesureRunners(benchName) {
+    const result = {
+      benchName,
+      configName: `${this._config.name} ${this._config.generate.name}`,
+      times: []
+    };
+    console.log('');
+    console.log(chalk.bold(`benchName: ${benchName}`));
+    const runInfos = this._config.bench[benchName];
+    runInfos.forEach(runInfo => {
+      const time = this._mesureRunner(runInfo);
+      result.times.push(time);
+    });
+    result.times.sort((a, b) => a.time - b.time);
+    this._result.push(result);
   }
 
   _mesureRunner(runInfo) {
@@ -29,11 +47,10 @@ module.exports = class Executer {
     }
     console.log(`Running: ${label} "${cmd}"`);
     this._writeRunnerConfigFile(testsPath, runInfo);
-    const result = {
+    return {
       runner: label,
       time: mesureCmd(cmd)
     };
-    this._results.push(result);
   }
 
   _writeRunnerConfigFile(testsPath, runInfo) {
