@@ -7,13 +7,10 @@
  *
  * @returns {Array}
  */
-exports.getExpandedConfigs = function (baseConfigs, baseConfigName = '', subConfigName = '') {
-  if (baseConfigName) {
-    baseConfigs = baseConfigs.filter(c => c.name === baseConfigName);
-  }
+exports.getExpandedConfigs = function (baseConfigs, filterName) {
   let expandedConfigs = expandConfigs(baseConfigs);
-  if (subConfigName) {
-    expandedConfigs = expandedConfigs.filter(config => config.generate.name === subConfigName);
+  if (filterName) {
+    expandedConfigs = expandedConfigs.filter(config => config.name.startsWith(filterName));
   }
   return expandedConfigs;
 };
@@ -28,7 +25,10 @@ function expandConfigs(baseConfigs) {
 function expandConfig(baseConfig) {
   const expandedGenerates = expandArrayProps(baseConfig.generate);
   return expandedGenerates.map(generate => {
-    return Object.assign({}, baseConfig, {generate});
+    return Object.assign({}, baseConfig, {
+      generate,
+      name: `${baseConfig.baseName}_${generate.name}`,
+    });
   });
 }
 

@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-  name: 'async',
+  baseName: 'async',
 
   generate: {
     filesCount: 50,

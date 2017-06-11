@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-  name: 'load-page',
+  baseName: 'load-page',
 
   generate: {
     filesCount: 5,

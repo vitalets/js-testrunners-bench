@@ -2,6 +2,7 @@
  * Reports results to console and html
  */
 const path = require('path');
+const fs = require('fs-extra')
 const os = require('os');
 const chalk = require('chalk');
 const columnify = require('columnify');
@@ -32,9 +33,9 @@ exports.printRunners = function (config) {
 };
 
 exports.printConfigHeader = function (config) {
-  const {name, filesCount, testsInSuite, suitesInSuite, nestedSuites} = config.generate;
+  const {filesCount, testsInSuite, suitesInSuite, nestedSuites} = config.generate;
   const testsCount = filesCount * testsInSuite * Math.pow(suitesInSuite, nestedSuites);
-  const prefix = chalk.magenta(`${config.name}_${name}:`);
+  const prefix = chalk.magenta(`${config.name}:`);
   const line = `${prefix} running ${chalk.blue(testsCount)} tests in ${chalk.blue(filesCount)} files:`;
   console.log(chalk.bold(line));
 };
@@ -58,6 +59,11 @@ exports.printConfigResult = function (result) {
 
 exports.printFooter = function () {
   console.log('Done.');
+};
+
+exports.storeResult = function (config, result) {
+  // const {data} = require('../../docs/data');
+  // const key = `${config.name}_${config.generate.name} (${result}`;
 };
 
 function printSystemInfo() {
