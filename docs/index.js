@@ -13,10 +13,14 @@ const colors = [
   "#4e304a",
 ];
 
-// Object.keys(data).forEach(createChart);
-
-createChart('Synchronous tests, no nested suites, no hooks, no Babel', data['sync_hooks=0_nestedSuites=0']['no Babel']);
-// createChart('Synchronous tests, no nested suites, no hooks, no Babel', data['sync_hooks=0_nestedSuites=0']['no Babel']);
+Object.keys(data).forEach(key => {
+  const testsCount = data[key].generate.testsCount;
+  const prefix = `${testsCount} ${getReadableName(key)}`;
+  Object.keys(data[key].bench).forEach(benchName => {
+    const title = `${prefix}, ${benchName}`;
+    createChart(title, data[key].bench[benchName]);
+  });
+});
 
 function createChart(title, runs) {
   const datasets = [];
@@ -33,7 +37,10 @@ function createChart(title, runs) {
 }
 
 function drawChart(title, labels, datasets) {
-  new Chart('chart', {
+  const canvas = document.createElement('canvas');
+  canvas.height = labels.length * 20 + 20;
+  document.getElementById('charts').appendChild(canvas);
+  new Chart(canvas, {
     type: 'horizontalBar',
     data: {
       labels,
@@ -45,6 +52,7 @@ function drawChart(title, labels, datasets) {
       },
       title: {
         display: true,
+        fontSize: 16,
         text: title
       },
       legend: {
@@ -52,14 +60,20 @@ function drawChart(title, labels, datasets) {
       },
       scales: {
         yAxes: [{
-          stacked: true
+          stacked: true,
+          ticks: {
+            fontSize: 14,
+          }
         }],
         xAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            fontSize: 14,
+            suggestedMax: datasets.slice(-1)[0].data.slice(-1)[0] * 1.1
           },
           scaleLabel: {
             display: true,
+            fontSize: 14,
             labelString: 'time (s)'
           }
         }]
@@ -75,4 +89,21 @@ function getData(index, value) {
   }
   data.push(parseFloat(value));
   return data;
+}
+
+function getReadableName(key) {
+  const map = {
+    'sync': 'synchronous tests',
+    'async': 'asynchronous tests',
+    'hooks=0': 'no hooks',
+    'hooks=1': 'with hooks',
+    'hooks=0.5': 'with 50% hooks',
+    'nestedSuites=0': 'no nested suites',
+    'nestedSuites=1': 'with nested suites',
+    'delay=0': 'delay 0ms',
+    'delay=0-10': 'random delay 0-10ms',
+  };
+  return key.split('_')
+    .map(item => map[item] || item)
+    .join(', ');
 }

@@ -33,8 +33,7 @@ exports.printRunners = function (config) {
 };
 
 exports.printConfigHeader = function (config) {
-  const {filesCount, testsInSuite, suitesInSuite, nestedSuites} = config.generate;
-  const testsCount = filesCount * testsInSuite * Math.pow(suitesInSuite, nestedSuites);
+  const {filesCount, testsCount} = config.generate;
   const prefix = chalk.magenta(`${config.name}:`);
   const line = `${prefix} running ${chalk.blue(testsCount)} tests in ${chalk.blue(filesCount)} files:`;
   console.log(chalk.bold(line));
@@ -67,7 +66,10 @@ exports.storeResult = function (config, result) {
   const prefix = 'const data = ';
   const data = fs.readFileSync(filePath, 'utf8').replace(prefix, '').trim();
   const json = data ? JSON.parse(data) : {};
-  json[config.name] = result;
+  json[config.name] = {
+    generate: config.generate,
+    bench: result
+  };
   const newData = `${prefix}${JSON.stringify(json, false, 2)}`;
   fs.writeFileSync(filePath, newData, 'utf8');
 };

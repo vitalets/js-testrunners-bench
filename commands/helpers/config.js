@@ -25,9 +25,11 @@ function expandConfigs(baseConfigs) {
 function expandConfig(baseConfig) {
   const expandedGenerates = expandArrayProps(baseConfig.generate);
   return expandedGenerates.map(generate => {
+    const {name, filesCount, testsInSuite, suitesInSuite, nestedSuites} = generate;
+    generate.testsCount = filesCount * testsInSuite * Math.pow(suitesInSuite, nestedSuites);
     return Object.assign({}, baseConfig, {
       generate,
-      name: `${baseConfig.baseName}_${generate.name}`,
+      name: `${baseConfig.baseName}_${name}`,
     });
   });
 }
