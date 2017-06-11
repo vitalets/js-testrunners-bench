@@ -1,5 +1,5 @@
 # Unit testrunners bench
-Javascript testrunners benchmark for unit testing.
+Javascript test-runners benchmark for unit testing.
 
 ## Runners
 * [mocha](https://github.com/mochajs/mocha)
