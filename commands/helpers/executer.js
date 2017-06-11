@@ -12,7 +12,7 @@ module.exports = class Executer {
   constructor(config, runners) {
     this._config = config;
     this._runners = runners;
-    this._result = [];
+    this._result = {};
   }
 
   mesure() {
@@ -21,20 +21,18 @@ module.exports = class Executer {
   }
 
   _mesureRunners(benchName) {
-    const result = {
-      benchName,
-      configName: `${this._config.name} ${this._config.generate.name}`,
-      times: []
-    };
+    const runResults = [];
     console.log('');
     console.log(chalk.bold(`benchName: ${benchName}`));
     const runInfos = this._config.bench[benchName];
     runInfos.forEach(runInfo => {
-      const time = this._mesureRunner(runInfo);
-      result.times.push(time);
+      const data = this._mesureRunner(runInfo);
+      if (data) {
+        runResults.push(data);
+      }
     });
-    result.times.sort((a, b) => a.time - b.time);
-    this._result.push(result);
+    runResults.sort((a, b) => a.time - b.time);
+    this._result[benchName] = runResults;
   }
 
   _mesureRunner(runInfo) {
@@ -42,7 +40,7 @@ module.exports = class Executer {
     const label = runInfo.label || runInfo.runner;
     const cmd = runInfo.cmd.replace('{path}', testsPath);
     if (!fs.existsSync(testsPath)) {
-      console.log(`Skipping: ${label} ( ${cmd} ) - path does not exist: ${testsPath}`);
+      console.log(`Skipping: ${label} ( ${cmd} )`);
       return;
     }
     console.log(`Running: ${label} ( ${cmd} )`);

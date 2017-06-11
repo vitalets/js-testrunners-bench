@@ -1,6 +1,6 @@
 // generate colors: http://tools.medialab.sciences-po.fr/iwanthue/index.php
 
-var colors = [
+const colors = [
   "#bf4e40",
   "#cda443",
   "#526139",
@@ -13,49 +13,66 @@ var colors = [
   "#4e304a",
 ];
 
+// Object.keys(data).forEach(createChart);
 
-new Chart('chart', {
-  type: 'horizontalBar',
-  data: {
-    labels: ["Sync", "Sync + Babel", "Async"],
-    datasets: [
-      {
-        label: "Mocha",
-        backgroundColor: colors[0],
-        // backgroundColor: backgroundColor[0],
-        // borderColor: borderColor[0],
-       // borderWidth: 1,
-        data: [2, 10, 5],
+createChart('Synchronous tests, no nested suites, no hooks, no Babel', data['sync_hooks=0_nestedSuites=0']['no Babel']);
+// createChart('Synchronous tests, no nested suites, no hooks, no Babel', data['sync_hooks=0_nestedSuites=0']['no Babel']);
+
+function createChart(title, runs) {
+  const datasets = [];
+  const labels = [];
+  runs.forEach((run, index) => {
+    labels.push(run.runner);
+    datasets.push({
+      label: run.runner,
+      data: getData(index, run.time),
+      backgroundColor: colors[index],
+    });
+  });
+  drawChart(title, labels, datasets);
+}
+
+function drawChart(title, labels, datasets) {
+  new Chart('chart', {
+    type: 'horizontalBar',
+    data: {
+      labels,
+      datasets,
+    },
+    options: {
+      tooltips: {
+        enabled: false,
       },
-      {
-        label: "AVA",
-        backgroundColor: colors[1],
-        // backgroundColor: backgroundColor[1],
-        // borderColor: borderColor[1],
-       // borderWidth: 1,
-        // backgroundColor: 'rgb(255, 99, 132)',
-        // borderColor: 'rgb(255, 99, 132)',
-        data: [5, 6, 7],
+      title: {
+        display: true,
+        text: title
       },
-      {
-        label: "Jest",
-        backgroundColor: colors[2],
-        // backgroundColor: backgroundColor[2],
-        // borderColor: borderColor[2],
-       // borderWidth: 1,
-        // backgroundColor: 'rgb(255, 99, 132)',
-        // borderColor: 'rgb(255, 99, 132)',
-        data: [4, 8, 5],
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [{
+          stacked: true
+        }],
+        xAxes: [{
+          ticks: {
+            beginAtZero: true
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'time (s)'
+          }
+        }]
       }
-    ]
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        ticks: {
-          beginAtZero:true
-        }
-      }]
     }
+  });
+}
+
+function getData(index, value) {
+  const data = [];
+  for(let i = 0; i < index; i++) {
+    data.push(0);
   }
-});
+  data.push(parseFloat(value));
+  return data;
+}

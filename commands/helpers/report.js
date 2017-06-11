@@ -2,7 +2,7 @@
  * Reports results to console and html
  */
 const path = require('path');
-const fs = require('fs-extra')
+const fs = require('fs-extra');
 const os = require('os');
 const chalk = require('chalk');
 const columnify = require('columnify');
@@ -41,8 +41,8 @@ exports.printConfigHeader = function (config) {
 };
 
 exports.printConfigResult = function (result) {
-  result.forEach(res => {
-    const times = res.times.slice();
+  Object.keys(result).forEach(benchName => {
+    const times = result[benchName].slice();
     if (times.length) {
       const {runner, time} = times[0];
       times[0] = {
@@ -51,7 +51,7 @@ exports.printConfigResult = function (result) {
       };
     }
     console.log('');
-    console.log(chalk.bold(`benchName: ${res.benchName}`));
+    console.log(chalk.bold(`benchName: ${benchName}`));
     console.log(columnify(times));
     console.log('');
   });
@@ -62,8 +62,14 @@ exports.printFooter = function () {
 };
 
 exports.storeResult = function (config, result) {
-  // const {data} = require('../../docs/data');
-  // const key = `${config.name}_${config.generate.name} (${result}`;
+  const filePath = 'docs/data.js';
+  fs.ensureFileSync(filePath);
+  const prefix = 'const data = ';
+  const data = fs.readFileSync(filePath, 'utf8').replace(prefix, '').trim();
+  const json = data ? JSON.parse(data) : {};
+  json[config.name] = result;
+  const newData = `${prefix}${JSON.stringify(json, false, 2)}`;
+  fs.writeFileSync(filePath, newData, 'utf8');
 };
 
 function printSystemInfo() {

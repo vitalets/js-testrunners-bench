@@ -4,15 +4,17 @@
 
 module.exports = {
   name: 'tap',
-  file: `var tap = require('tap'); \n {content}`,
+  file: `require('tap').mochaGlobals(); \n {content}`,
   hooks: [
-    'tap.before',
-    'tap.beforeEach',
-    'tap.after',
-    'tap.afterEach',
+    'before',
+    'beforeEach',
+    'after',
+    'afterEach',
   ],
-  suite: `tap.test('{name}', function (tap) { {content}; tap.end(); });`,
-  test: `tap.test('{name}', {fn})`,
-  syncFn: `function (tap) { tap.end(); }`,
-  asyncFn: `function (tap) { setTimeout(() => { tap.end(); }, {delay})}`
+  suite: `describe('{name}', function () { {content} });`,
+  test: `it('{name}', {fn})`,
+  syncFn: `function () {}`,
+  asyncFn: `function () {
+    return new Promise(resolve => setTimeout(resolve, {delay}));
+  }`,
 };
