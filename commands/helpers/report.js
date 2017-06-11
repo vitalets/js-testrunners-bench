@@ -34,7 +34,7 @@ exports.printRunners = function (config) {
 exports.printConfigHeader = function (config) {
   const {name, filesCount, testsInSuite, suitesInSuite, nestedSuites} = config.generate;
   const testsCount = filesCount * testsInSuite * Math.pow(suitesInSuite, nestedSuites);
-  const prefix = chalk.magenta(`${config.name} (${name}):`);
+  const prefix = chalk.magenta(`${config.name}_${name}:`);
   const line = `${prefix} running ${chalk.blue(testsCount)} tests in ${chalk.blue(filesCount)} files:`;
   console.log(chalk.bold(line));
 };

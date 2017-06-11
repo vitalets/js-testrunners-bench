@@ -42,10 +42,10 @@ module.exports = class Executer {
     const label = runInfo.label || runInfo.runner;
     const cmd = runInfo.cmd.replace('{path}', testsPath);
     if (!fs.existsSync(testsPath)) {
-      console.log(`Skipping: ${label} "${cmd}" - path does not exist: ${testsPath}`);
+      console.log(`Skipping: ${label} ( ${cmd} ) - path does not exist: ${testsPath}`);
       return;
     }
-    console.log(`Running: ${label} "${cmd}"`);
+    console.log(`Running: ${label} ( ${cmd} )`);
     this._writeRunnerConfigFile(testsPath, runInfo);
     return {
       runner: label,
