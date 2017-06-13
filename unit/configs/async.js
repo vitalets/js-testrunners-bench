@@ -16,18 +16,26 @@ module.exports = {
   },
 
   bench: {
-    default: [
+    'no Babel': [
       {runner: 'mocha', cmd: 'mocha {path}'},
       {runner: 'jasmine', cmd: 'jasmine JASMINE_CONFIG_PATH=temp/jasmine.json'},
       {runner: 'mocha.parallel', cmd: 'mocha {path}'},
       {runner: 'mocha-parallel-tests', cmd: 'mocha-parallel-tests {path}'},
-      //{runner: 'qunit', cmd: 'qunit {path}'},
+      {runner: 'qunit', cmd: 'qunit {path}'},
       {runner: 'tape', cmd: 'tape {path}/*.js'},
-      {label: 'tap (parallel)', runner: 'tap', cmd: 'tap {path} --jobs-auto'},
-      //{label: 'lab (parallel)', runner: 'lab', cmd: 'lab --parallel {path}'},
-      //{label: 'ava', runner: 'ava', cmd: 'ava {path}'},
-      //{label: 'ava (concurrency=4)', runner: 'ava', cmd: 'ava {path} --concurrency=4'},
-      // {runner: 'jest', cmd: 'jest {path}'},
+      {runner: 'tap', cmd: 'tap {path} --jobs-auto'},
+      {runner: 'lab', cmd: 'lab --parallel {path}'},
+      {label: 'ava (default)', runner: 'ava', cmd: 'ava {path}'},
+      {label: 'ava (concurrency=4)', runner: 'ava', cmd: 'ava {path} --concurrency=4'},
+      {runner: 'jest', cmd: 'jest {path}'},
+    ],
+    'AVA': [
+      {label: 'ava (serial)', runner: 'ava', cmd: 'ava {path} --serial'},
+      {label: 'ava (default)', runner: 'ava', cmd: 'ava {path}'},
+      {label: 'ava (concurrency=2)', runner: 'ava', cmd: 'ava {path} --concurrency=2'},
+      {label: 'ava (concurrency=4)', runner: 'ava', cmd: 'ava {path} --concurrency=4'},
+      {label: 'ava (concurrency=50)', runner: 'ava', cmd: 'ava {path} --concurrency=50'},
+      {label: 'ava (no-power-assert)', runner: 'ava', cmd: 'ava {path} --no-power-assert'},
     ]
   },
 };

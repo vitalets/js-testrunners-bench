@@ -1,16 +1,18 @@
 // generate colors: http://tools.medialab.sciences-po.fr/iwanthue/index.php
 
 const colors = [
-  "#bf4e40",
-  "#cda443",
-  "#526139",
-  "#7b48c0",
-  "#7b95c3",
-  "#c95aa2",
-  "#76cca4",
-  "#cbaf9f",
-  "#92d04f",
-  "#4e304a",
+  "#3592ff",
+  "#f74241",
+  "#5ade5e",
+  "#971da8",
+  "#00d3a7",
+  "#3447b5",
+  "#ea6315",
+  "#deb8f8",
+  "#865e00",
+  "#694673",
+  "#ff8fa1",
+  "#883c26",
 ];
 
 Object.keys(data).forEach(key => {
@@ -50,7 +52,7 @@ function drawChart(title, labels, datasets) {
       title: {
         display: true,
         fontSize: 16,
-        text: title
+        text: ' '.repeat(22) + title
       },
       legend: {
         display: false,
