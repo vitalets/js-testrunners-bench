@@ -29,7 +29,7 @@ function mesureConfig(config) {
   report.printConfigHeader(config);
   const result = new Executer(config, runners).mesure(benchName);
   report.printConfigResult(result);
-  if (!process.env.BENCH_STORE) {
+  if (process.env.BENCH_WRITE) {
     report.storeResult(config, result);
   }
 }

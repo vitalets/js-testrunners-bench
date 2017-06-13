@@ -25,8 +25,7 @@ module.exports = {
       {runner: 'tape', cmd: 'tape {path}/*.js'},
       {runner: 'tap', cmd: 'tap {path} --jobs-auto'},
       {runner: 'lab', cmd: 'lab --parallel {path}'},
-      {label: 'ava (default)', runner: 'ava', cmd: 'ava {path}'},
-      {label: 'ava (concurrency=4)', runner: 'ava', cmd: 'ava {path} --concurrency=4'},
+      {runner: 'ava', cmd: 'ava {path} --concurrency=4'},
       {runner: 'jest', cmd: 'jest {path}'},
     ],
     'AVA': [
