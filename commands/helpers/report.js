@@ -66,10 +66,13 @@ exports.storeResult = function (config, result) {
   const prefix = 'const data = ';
   const data = fs.readFileSync(filePath, 'utf8').replace(prefix, '').trim();
   const json = data ? JSON.parse(data) : {};
-  json[config.name] = {
-    generate: config.generate,
-    bench: result
-  };
+  Object.keys(result).forEach(benchName => {
+    const key = `${config.name}_${benchName}`;
+    json[key] = Object.assign({}, config.generate, {
+      benchName,
+      result: result[benchName]
+    });
+  });
   const newData = `${prefix}${JSON.stringify(json, false, 2)}`;
   fs.writeFileSync(filePath, newData, 'utf8');
 };

@@ -14,12 +14,9 @@ const colors = [
 ];
 
 Object.keys(data).forEach(key => {
-  const testsCount = data[key].generate.testsCount;
-  const prefix = `${testsCount} ${getReadableName(key)}`;
-  Object.keys(data[key].bench).forEach(benchName => {
-    const title = `${prefix}, ${benchName}`;
-    createChart(title, data[key].bench[benchName]);
-  });
+  const testsCount = data[key].testsCount;
+  const title = `${testsCount} ${getReadableName(key)}`;
+  createChart(title, data[key].result);
 });
 
 function createChart(title, runs) {
@@ -38,7 +35,7 @@ function createChart(title, runs) {
 
 function drawChart(title, labels, datasets) {
   const canvas = document.createElement('canvas');
-  canvas.height = labels.length * 20 + 20;
+  canvas.height = labels.length * 15 + 20;
   document.getElementById('charts').appendChild(canvas);
   new Chart(canvas, {
     type: 'horizontalBar',

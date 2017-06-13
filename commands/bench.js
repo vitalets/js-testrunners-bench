@@ -8,6 +8,7 @@
 
 const testingType = process.argv[2];
 const configName = process.argv[3];
+const benchName = process.argv[4];
 
 const assert = require('assert');
 const paths = require('./helpers/paths');
@@ -26,7 +27,7 @@ report.printFooter();
 
 function mesureConfig(config) {
   report.printConfigHeader(config);
-  const result = new Executer(config, runners).mesure();
+  const result = new Executer(config, runners).mesure(benchName);
   report.printConfigResult(result);
   if (!process.env.BENCH_STORE) {
     report.storeResult(config, result);

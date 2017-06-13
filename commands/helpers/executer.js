@@ -15,8 +15,13 @@ module.exports = class Executer {
     this._result = {};
   }
 
-  mesure() {
-    Object.keys(this._config.bench).forEach(benchName => this._mesureRunners(benchName));
+  mesure(exactBenchName) {
+    const benchNames = Object.keys(this._config.bench)
+      .filter(benchName => !exactBenchName || benchName === exactBenchName);
+    if (!benchNames.length) {
+      throw new Error(`No benches found for: ${exactBenchName}`);
+    }
+    benchNames.forEach(benchName => this._mesureRunners(benchName));
     return this._result;
   }
 

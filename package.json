@@ -9,7 +9,7 @@
   "scripts": {
     "unit-generate": "node commands/generate unit",
     "unit-bench": "npm run unit-bench-sync",
-    "unit-bench-sync": "node commands/bench unit sync_hooks=0_nestedSuites=0",
+    "unit-bench-sync": "node commands/bench unit sync_hooks=0_nestedSuites=0 'no Babel'",
     "unit-bench-async": "node commands/bench unit async_delay=0-10_hooks=0_nestedSuites=0",
     "unit-bench-sync-all": "node commands/bench unit sync",
     "unit-bench-async-all": "node commands/bench unit async",
