@@ -7,8 +7,9 @@ const os = require('os');
 const chalk = require('chalk');
 const columnify = require('columnify');
 
-exports.printHeader = function (text) {
-  console.log(chalk.bold(capitalizeFirstLetter(text)));
+exports.printHeader = function (testingType) {
+  console.log(chalk.bold(`JavaScript test-runners benchmark.`));
+  console.log(`${chalk.bold('Testing type:')} ${testingType}`);
   printSystemInfo();
   console.log(`${chalk.bold('Date:')} ${new Date().toDateString()}`);
   console.log('');

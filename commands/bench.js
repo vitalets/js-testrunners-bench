@@ -20,7 +20,7 @@ const {configs, runners} = require(`../${testingType}`);
 paths.setTestingType(testingType);
 const expandedConfigs = configUtils.getExpandedConfigs(configs, configName);
 assert(expandedConfigs.length, `No configs found for: ${configName}`);
-report.printHeader(`${testingType} testing`);
+report.printHeader(testingType);
 report.printRunners(expandedConfigs[0]);
 expandedConfigs.forEach(mesureConfig);
 report.printFooter();
