@@ -112,3 +112,6 @@ Not ready yet.
  * todo [Nightwatch](https://github.com/nightwatchjs/nightwatch)
  * todo [TestCafe](https://github.com/DevExpress/testcafe)
  * todo [Nemo](https://github.com/paypal/nemo)
+
+## License
+MIT @ [Vitaliy Potapov](https://github.com/vitalets)
