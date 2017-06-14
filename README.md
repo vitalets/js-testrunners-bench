@@ -20,33 +20,36 @@ Tests are divided onto **unit** and **functional**.
 https://vitalets.github.io/js-testrunners-bench/index.html
 
 ### Usage
-1. Clone the repo:
-```bash
-git clone https://github.com/vitalets/js-testrunners-bench.git
-```
-2. Install dependencies:
-```bash
-cd js-testrunners-bench
-npm install
-```
-3. Generate tests:
-```bash
-node commands/generate unit
-```
-Check that `/tests` directory is created and filled with test-files.
-4. Run benchmarks:
-```bash
-# Synchronous tests with no hooks, no nested suites and no Babel transpiling
-node commands/bench unit sync_hooks=0_nestedSuites=0 'no Babel'
+1. Clone the repo
+    ```bash
+    git clone https://github.com/vitalets/js-testrunners-bench.git
+    ```
 
-# Asynchronous tests with random delay 0-10ms with hooks and nested suites
-node commands/bench unit async_delay=0-10_hooks=1_nestedSuites=1
+2. Install dependencies
+    ```bash
+    cd js-testrunners-bench
+    npm install
+    ```
 
-etc..
-```
+3. Generate tests
+    ```bash
+    node commands/generate unit
+    ```
+    Check that `/tests` directory is created and filled with test-files.
+    
+4. Run benchmarks
+    ```bash
+    # Synchronous tests with no hooks, no nested suites and no Babel transpiling
+    node commands/bench unit sync_hooks=0_nestedSuites=0 'no Babel'
+    
+    # Asynchronous tests with random delay 0-10ms with hooks and nested suites
+    node commands/bench unit async_delay=0-10_hooks=1_nestedSuites=1
+    
+    etc..
+    ```
 
 <details>
- <summary>Example output</summary>
+ <summary>Example output:</summary>
 
     > node commands/bench unit sync_hooks=0_nestedSuites=0 'no Babel'
     
