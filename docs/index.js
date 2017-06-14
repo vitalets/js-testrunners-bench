@@ -15,13 +15,18 @@ const colors = [
   "#883c26",
 ];
 
-Object.keys(data).forEach(key => {
-  const testsCount = data[key].testsCount;
-  const title = `${testsCount} ${getReadableName(key)}`;
-  createChart(title, data[key].result);
-});
+createCharts();
 
-function createChart(title, runs) {
+function createCharts() {
+  Object.keys(data).sort(sorter).forEach(key => {
+    const testsCount = data[key].testsCount;
+    const title = `${testsCount} ${getReadableName(key)}`;
+    createContentsLink(key, title);
+    createChart(key, title, data[key].result);
+  });
+}
+
+function createChart(key, title, runs) {
   const datasets = [];
   const labels = [];
   runs.forEach((run, index) => {
@@ -32,13 +37,27 @@ function createChart(title, runs) {
       backgroundColor: colors[index],
     });
   });
-  drawChart(title, labels, datasets);
+  drawChart(key, title, labels, datasets);
 }
 
-function drawChart(title, labels, datasets) {
+function createContentsLink(key, title) {
+  const a = document.createElement('a');
+  a.href = `#${key}`;
+  a.textContent = title;
+  const li = document.createElement('li');
+  li.appendChild(a);
+  document.getElementById('contents').appendChild(li);
+}
+
+function drawChart(key, title, labels, datasets) {
+  const wrapper = document.createElement('div');
   const canvas = document.createElement('canvas');
-  canvas.height = labels.length * 15 + 20;
-  document.getElementById('charts').appendChild(canvas);
+  canvas.id = key;
+  canvas.height = window.devicePixelRatio === 1
+    ? 10 * labels.length + 10
+    : window.devicePixelRatio * Math.max(90, 15 * labels.length + 10);
+  wrapper.appendChild(canvas);
+  document.getElementById('charts').appendChild(wrapper);
   new Chart(canvas, {
     type: 'horizontalBar',
     data: {
@@ -52,7 +71,7 @@ function drawChart(title, labels, datasets) {
       title: {
         display: true,
         fontSize: 16,
-        text: ' '.repeat(22) + title
+        text: ' '.repeat(0) + title
       },
       legend: {
         display: false,
@@ -105,4 +124,8 @@ function getReadableName(key) {
   return key.split('_')
     .map(item => map[item] || item)
     .join(', ');
+}
+
+function sorter(a, b) {
+  return a > b ? -1 : (a < b ? 1 : 0);
 }

@@ -1,3 +1,36 @@
+body {
+    color: #333333;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    padding: 15px;
+}
+
+h1 {
+    text-align: center;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+a {
+    text-decoration: none;
+}
+
+#contents > li {
+    margin-bottom: 20px;
+}
+
 #charts > * {
-    margin: 20px 0;
+    position: relative;
+    padding: 10px 0;
+}
+
+.top {
+    margin: 10px 0;
+}
+
+.me {
+    color: gray;
+}
+
+footer {
+    text-align: center;
 }

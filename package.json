@@ -1,7 +1,7 @@
 {
   "name": "js-testrunners-bench",
   "version": "0.1.0",
-  "description": "Javascript testrunners benchmark",
+  "description": "Javascript test-runners benchmark",
   "author": {
     "name": "Vitaliy Potapov",
     "email": "noginsk@rambler.ru"
@@ -17,7 +17,8 @@
     "func-bench": "npm run func-bench-load-page",
     "func-bench-load-page": "node commands/bench functional load-page_delay=0-200",
     "selenium": "selenium-standalone start",
-    "static": "http-server ./functional/static"
+    "static": "http-server ./functional/static",
+    "set-write-mode": "export BENCH_WRITE=1"
   },
   "dependencies": {
     "ava": "^0.19.1",
