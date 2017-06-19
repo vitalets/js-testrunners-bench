@@ -1,5 +1,5 @@
 # JavaScript test-runners benchmark
-This benchmark runs the same tests on the most popular JavaScript test-runners and measures execution time.  
+The benchmark for running the same tests on the most popular JavaScript test-runners and measuring execution time.  
 Tests are divided onto **unit** and **functional**.
 
 ## Unit tests
