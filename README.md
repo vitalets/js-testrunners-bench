@@ -112,7 +112,7 @@ Not ready yet.
  * todo [TestCafe](https://github.com/DevExpress/testcafe)
  * todo [Nemo](https://github.com/paypal/nemo)
 
-## Related links and articles
+## Related links
 * [Javascript unit testing tools](https://mo.github.io/2017/06/05/javascript-unit-testing.html)
 * [An Overview of JavaScript Testing in 2017](https://medium.com/powtoon-engineering/a-complete-guide-to-testing-javascript-in-2017-a217b4cd5a2a)
 * [Picking Jest over Mocha – testing tools comparison](https://gziolo.pl/2017/06/17/picking-jest-over-mocha/)
