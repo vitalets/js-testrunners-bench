@@ -46,6 +46,7 @@
   },
   "devDependencies": {},
   "jest": {
+    "testEnvironment": "node",
     "testRegex": "\\.js$"
   },
   "license": "MIT"
