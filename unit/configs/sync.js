@@ -24,7 +24,8 @@ module.exports = {
       {runner: 'qunit', cmd: 'qunit {path}'},
       {runner: 'lab', cmd: 'lab --parallel {path}'},
       {runner: 'tap', cmd: 'tap {path} --jobs-auto'},
-      {runner: 'jest', cmd: 'jest {path}'},
+      {label: 'jest (jsdom)', runner: 'jest', cmd: 'jest --env=jsdom {path}'},
+      {label: 'jest (node)', runner: 'jest', cmd: 'jest --env=node {path}'},
       {runner: 'ava', cmd: 'ava {path} --concurrency=4'},
     ],
     'with Babel': [
@@ -33,7 +34,8 @@ module.exports = {
       {runner: 'jasmine', cmd: 'jasmine JASMINE_CONFIG_PATH=temp/jasmine.json', babel: true},
       {runner: 'lab', cmd: 'lab {path} -T node_modules/lab-babel'},
       {runner: 'ava', cmd: 'ava {path} --concurrency=4'},
-      {runner: 'jest', cmd: 'jest {path}'},
+      {label: 'jest (jsdom)', runner: 'jest', cmd: 'jest --env=jsdom {path}'},
+      {label: 'jest (node)', runner: 'jest', cmd: 'jest --env=node {path}'},
     ],
     'AVA': [
       {label: 'serial', runner: 'ava', cmd: 'ava {path} --serial'},

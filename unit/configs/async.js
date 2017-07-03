@@ -26,7 +26,8 @@ module.exports = {
       {runner: 'tap', cmd: 'tap {path} --jobs-auto'},
       {runner: 'lab', cmd: 'lab --parallel {path}'},
       {runner: 'ava', cmd: 'ava {path} --concurrency=4'},
-      {runner: 'jest', cmd: 'jest {path}'},
+      {label: 'jest (jsdom)', runner: 'jest', cmd: 'jest --env=jsdom {path}'},
+      {label: 'jest (node)', runner: 'jest', cmd: 'jest --env=node {path}'},
     ],
     'AVA': [
       {label: 'ava (serial)', runner: 'ava', cmd: 'ava {path} --serial'},
