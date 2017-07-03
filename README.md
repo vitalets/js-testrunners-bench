@@ -51,7 +51,10 @@ https://vitalets.github.io/js-testrunners-bench/index.html
     # Synchronous tests with hooks, with nested suites and no Babel transpiling
     node commands/bench unit sync_hooks=1_nestedSuites=1 'no Babel'
     
-    # Asynchronous tests with random delay 0-10ms with hooks and nested suites
+    # Asynchronous tests with random delay 0-10ms, no hooks, no nested suites, no Babel
+    node commands/bench unit async_delay=0-10_hooks=0_nestedSuites=0 'no Babel'
+
+    # Asynchronous tests with random delay 0-10ms with hooks and nested suites, no Babel
     node commands/bench unit async_delay=0-10_hooks=1_nestedSuites=1 'no Babel'
     
     etc..
