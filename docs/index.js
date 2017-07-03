@@ -1,5 +1,11 @@
-// generate colors: http://tools.medialab.sciences-po.fr/iwanthue/index.php
 
+function log(s) {
+  document.getElementById('log').textContent += String(s);
+}
+
+// log(window.outerHeight + ' - ' + document.documentElement.clientHeight+ '-' + window.devicePixelRatio);
+
+// generate colors: http://tools.medialab.sciences-po.fr/iwanthue/index.php
 const colors = [
   "#3592ff",
   "#f74241",
@@ -53,9 +59,8 @@ function drawChart(key, title, labels, datasets) {
   const wrapper = document.createElement('div');
   const canvas = document.createElement('canvas');
   canvas.id = key;
-  canvas.height = window.devicePixelRatio === 1
-    ? 10 * labels.length + 10
-    : window.devicePixelRatio * Math.max(90, 15 * labels.length + 10);
+  // empiric koefs for normal view on phones and monitors
+  canvas.height = 20 * labels.length + 40;
   wrapper.appendChild(canvas);
   document.getElementById('charts').appendChild(wrapper);
   new Chart(canvas, {

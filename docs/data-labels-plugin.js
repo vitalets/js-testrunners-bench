@@ -1,3 +1,6 @@
+/**
+ * Plugin to draw persistent label at the end of each bar
+ */
 Chart.plugins.register({
   afterDatasetsDraw: function(ctrl) {
     var chart = ctrl.chart;

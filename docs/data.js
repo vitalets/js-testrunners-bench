@@ -12,43 +12,47 @@ const data = {
     "result": [
       {
         "runner": "jasmine",
-        "time": "0.215"
-      },
-      {
-        "runner": "qunit",
-        "time": "0.301"
-      },
-      {
-        "runner": "mocha",
-        "time": "0.345"
-      },
-      {
-        "runner": "lab",
-        "time": "0.399"
-      },
-      {
-        "runner": "mocha-parallel-tests",
-        "time": "0.468"
+        "time": "0.228"
       },
       {
         "runner": "tape",
-        "time": "0.472"
+        "time": "0.299"
+      },
+      {
+        "runner": "qunit",
+        "time": "0.325"
+      },
+      {
+        "runner": "lab",
+        "time": "0.375"
+      },
+      {
+        "runner": "mocha",
+        "time": "0.415"
       },
       {
         "runner": "mocha.parallel",
-        "time": "0.485"
+        "time": "0.479"
       },
       {
-        "runner": "jest",
-        "time": "3.33"
+        "runner": "mocha-parallel-tests",
+        "time": "0.520"
+      },
+      {
+        "runner": "jest (node)",
+        "time": "2.13"
+      },
+      {
+        "runner": "jest (jsdom)",
+        "time": "3.42"
       },
       {
         "runner": "tap",
-        "time": "6.39"
+        "time": "6.30"
       },
       {
         "runner": "ava",
-        "time": "10.1"
+        "time": "10.0"
       }
     ]
   },
@@ -144,43 +148,47 @@ const data = {
     "result": [
       {
         "runner": "mocha-parallel-tests",
-        "time": "0.485"
+        "time": "0.495"
       },
       {
         "runner": "lab",
-        "time": "0.813"
+        "time": "0.810"
       },
       {
         "runner": "mocha.parallel",
-        "time": "0.889"
+        "time": "0.920"
       },
       {
         "runner": "jasmine",
-        "time": "1.86"
+        "time": "1.83"
       },
       {
         "runner": "tape",
-        "time": "1.90"
+        "time": "1.89"
       },
       {
         "runner": "mocha",
-        "time": "1.96"
+        "time": "2.01"
       },
       {
-        "runner": "jest",
-        "time": "3.71"
+        "runner": "jest (node)",
+        "time": "2.36"
+      },
+      {
+        "runner": "jest (jsdom)",
+        "time": "4.13"
       },
       {
         "runner": "qunit",
-        "time": "5.80"
+        "time": "5.81"
       },
       {
         "runner": "tap",
-        "time": "5.89"
+        "time": "5.83"
       },
       {
         "runner": "ava",
-        "time": "9.86"
+        "time": "9.69"
       }
     ]
   },
@@ -197,27 +205,31 @@ const data = {
     "result": [
       {
         "runner": "jasmine",
-        "time": "0.249"
+        "time": "0.248"
       },
       {
         "runner": "qunit",
-        "time": "0.412"
+        "time": "0.400"
       },
       {
         "runner": "mocha",
-        "time": "0.462"
+        "time": "0.416"
       },
       {
         "runner": "mocha-parallel-tests",
-        "time": "0.611"
+        "time": "0.542"
       },
       {
-        "runner": "jest",
-        "time": "4.48"
+        "runner": "jest (node)",
+        "time": "1.99"
+      },
+      {
+        "runner": "jest (jsdom)",
+        "time": "3.35"
       },
       {
         "runner": "tap",
-        "time": "7.16"
+        "time": "7.32"
       }
     ]
   },
@@ -234,19 +246,23 @@ const data = {
     "result": [
       {
         "runner": "jasmine",
-        "time": "1.91"
+        "time": "1.57"
       },
       {
         "runner": "mocha",
-        "time": "2.06"
+        "time": "1.76"
       },
       {
-        "runner": "jest",
-        "time": "3.58"
+        "runner": "jest (node)",
+        "time": "2.01"
+      },
+      {
+        "runner": "jest (jsdom)",
+        "time": "3.68"
       },
       {
         "runner": "mocha-parallel-tests",
-        "time": "4.71"
+        "time": "4.58"
       }
     ]
   },
@@ -318,27 +334,31 @@ const data = {
     "result": [
       {
         "runner": "mocha-parallel-tests",
-        "time": "0.931"
+        "time": "1.03"
+      },
+      {
+        "runner": "jest (node)",
+        "time": "7.80"
+      },
+      {
+        "runner": "jest (jsdom)",
+        "time": "9.39"
       },
       {
         "runner": "tap",
-        "time": "9.91"
-      },
-      {
-        "runner": "jest",
-        "time": "10.4"
+        "time": "10.1"
       },
       {
         "runner": "jasmine",
-        "time": "18.3"
+        "time": "18.0"
       },
       {
         "runner": "mocha",
-        "time": "18.4"
+        "time": "18.3"
       },
       {
         "runner": "qunit",
-        "time": "61.0"
+        "time": "61.7"
       }
     ]
   }
