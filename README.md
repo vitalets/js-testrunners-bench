@@ -19,30 +19,40 @@ The benchmark for running the same tests on the most popular JavaScript test-run
 https://vitalets.github.io/js-testrunners-bench/index.html
 
 ### Usage
-1. Clone the repo
+1. Clone the repo:
     ```bash
     git clone https://github.com/vitalets/js-testrunners-bench.git
     ```
 
-2. Install dependencies
+2. Install dependencies:
     ```bash
     cd js-testrunners-bench
     npm install
     ```
 
-3. Generate tests
+3. Generate tests:
     ```bash
     node commands/generate unit
     ```
-    Check that `/tests` directory is created and filled with test-files.
+    After run check that `/tests` directory is created and filled with test-files.
     
-4. Run benchmarks
+4. Run benchmark:
+    ```bash
+    node commands/bench unit [testParams] [benchType]
+    ```
+    Examples:
     ```bash
     # Synchronous tests with no hooks, no nested suites and no Babel transpiling
     node commands/bench unit sync_hooks=0_nestedSuites=0 'no Babel'
     
+    # Synchronous tests with no hooks, no nested suites and with Babel transpiling
+    node commands/bench unit sync_hooks=0_nestedSuites=0 'with Babel'
+    
+    # Synchronous tests with hooks, with nested suites and no Babel transpiling
+    node commands/bench unit sync_hooks=1_nestedSuites=1 'no Babel'
+    
     # Asynchronous tests with random delay 0-10ms with hooks and nested suites
-    node commands/bench unit async_delay=0-10_hooks=1_nestedSuites=1
+    node commands/bench unit async_delay=0-10_hooks=1_nestedSuites=1 'no Babel'
     
     etc..
     ```
@@ -113,7 +123,8 @@ Not ready yet.
  * todo [Nemo](https://github.com/paypal/nemo)
 
 ## Related links
-* [Javascript unit testing tools](https://mo.github.io/2017/06/05/javascript-unit-testing.html)
+* [JavaScript Test-Runners Benchmark (Part 1, The Unit Testing)](https://medium.com/dailyjs/javascript-test-runners-benchmark-3a78d4117b4)
+* [JavaScript unit testing tools](https://mo.github.io/2017/06/05/javascript-unit-testing.html)
 * [An Overview of JavaScript Testing in 2017](https://medium.com/powtoon-engineering/a-complete-guide-to-testing-javascript-in-2017-a217b4cd5a2a)
 * [Picking Jest over Mocha – testing tools comparison](https://gziolo.pl/2017/06/17/picking-jest-over-mocha/)
 
