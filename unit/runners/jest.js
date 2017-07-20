@@ -1,13 +1,14 @@
 module.exports = {
   name: 'jest',
+  file: '',
+  suite: `describe('{name}', () => { {content} });`,
   hooks: [
     'beforeAll',
     'beforeEach',
     'afterAll',
     'afterEach',
   ],
-  suite: `describe('{name}', () => { {content} });`,
   test: `test('{name}', {fn})`,
-  syncFn: `() => {}`,
-  asyncFn: `() => new Promise(resolve => setTimeout(resolve, {delay}))`
+  syncFn: `function () { {content} }`,
+  asyncFn: `function (done) { {content} }`
 };

@@ -1,20 +1,15 @@
-/**
- * Tap.
- */
 
 module.exports = {
   name: 'tap',
   file: `require('tap').mochaGlobals(); \n {content}`,
+  suite: `describe('{name}', function () { {content} });`,
   hooks: [
     'before',
     'beforeEach',
     'after',
     'afterEach',
   ],
-  suite: `describe('{name}', function () { {content} });`,
   test: `it('{name}', {fn})`,
-  syncFn: `function () {}`,
-  asyncFn: `function () {
-    return new Promise(resolve => setTimeout(resolve, {delay}));
-  }`,
+  syncFn: `function () { {content} }`,
+  asyncFn: `function (done) { {content} }`,
 };

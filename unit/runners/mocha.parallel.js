@@ -1,15 +1,14 @@
 module.exports = {
   name: 'mocha.parallel',
+  file: `const parallel = require('mocha.parallel'); \nparallel('{name}', function () { {content} });`,
+  suite: null,
   hooks: [
     'before',
     'beforeEach',
     'after',
     'afterEach',
   ],
-  file: `const parallel = require('mocha.parallel'); \nparallel('{name}', function () { {content} });`,
   test: `it('{name}', {fn})`,
-  syncFn: `function () {}`,
-  asyncFn: `function () {
-    return new Promise(resolve => setTimeout(resolve, {delay}));
-  }`,
+  syncFn: `function () { {content} }`,
+  asyncFn: `function (done) { {content} }`,
 };

@@ -3,17 +3,18 @@ const path = require('path');
 
 module.exports = {
   name: 'jasmine',
+  file: '',
+  suite: `describe('{name}', function () { {content} });`,
   hooks: [
     'beforeAll',
     'beforeEach',
     'afterAll',
     'afterEach',
   ],
-  suite: `describe('{name}', function () { {content} });`,
   test: `it('{name}', {fn})`,
-  syncFn: `function () {}`,
+  syncFn: `function () { {content} }`,
   asyncFn: `function (done) {
-    return new Promise(resolve => setTimeout(resolve, {delay})).then(done);
+    {content}
   }`,
   writeConfigFile
 };

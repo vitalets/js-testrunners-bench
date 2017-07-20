@@ -1,13 +1,14 @@
 module.exports = {
   name: 'ava',
+  file: `import test from 'ava'; \n {content}`,
+  suite: null,
   hooks: [
     'test.before',
     'test.beforeEach',
     'test.after',
     'test.afterEach',
   ],
-  file: `import test from 'ava'; \n {content}`,
   test: `test('{name}', {fn})`,
-  syncFn: `() => {}`,
-  asyncFn: `() => new Promise(resolve => setTimeout(resolve, {delay}))`
+  syncFn: `() => { {content} }`,
+  asyncFn: `() => new Promise(done => { {content} })`,
 };

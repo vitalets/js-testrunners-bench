@@ -7,14 +7,15 @@
 
 module.exports = {
   name: 'lab',
+  file: `const Lab = require('lab'); const lab = exports.lab = Lab.script(); \n {content}`,
+  suite: null,
   hooks: [
     'lab.before',
     'lab.beforeEach',
     'lab.after',
     'lab.afterEach',
   ],
-  file: `const Lab = require('lab'); const lab = exports.lab = Lab.script(); \n {content}`,
   test: `lab.test('{name}', {fn})`,
-  syncFn: `done => { done(); }`,
-  asyncFn: `done => setTimeout(() => { done(); }, {delay})`
+  syncFn: `function (done) { {content} \n done(); }`,
+  asyncFn: `function (done) { {content} }`
 };
