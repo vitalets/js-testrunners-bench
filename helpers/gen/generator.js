@@ -105,6 +105,11 @@ module.exports = class Generator {
       .replace('{random}', randomizer.getValue().toFixed(2));
   }
 
+  /**
+   * Some configs are not supported by runners. For example, config with nested suites is not supported by AVA.
+   * @returns {boolean}
+   * @private
+   */
   _isConfigSupportedByRunner() {
     // nested suites are required but not supported by runner
     if (this._config.nestedSuites > 0 && !this._runner.suite) {
