@@ -13,19 +13,19 @@ switch (command) {
     gen(genConfigs, runners);
     break;
   case 'sync-empty':
-    runBench('test=syncEmptyFn_nestedSuites=false_hooks=false', 'noBabel');
+    runBench('test=syncEmptyFn_nestedSuites=false_hooks=false', 'babel=false');
     break;
   case 'sync-empty-babel':
-    runBench('test=syncEmptyFn_nestedSuites=false_hooks=false', 'withBabel');
+    runBench('test=syncEmptyFn_nestedSuites=false_hooks=false', 'babel=true');
     break;
   case 'sync-empty-nested':
-    runBench('test=syncEmptyFn_nestedSuites=true_hooks=false', 'noBabel');
+    runBench('test=syncEmptyFn_nestedSuites=true_hooks=false', 'babel=false');
     break;
   case 'sync-empty-nested-babel':
-    runBench('test=syncEmptyFn_nestedSuites=true_hooks=false', 'withBabel');
+    runBench('test=syncEmptyFn_nestedSuites=true_hooks=false', 'babel=true');
     break;
   case 'sync-heavy':
-    runBench('test=syncHeavyFn_nestedSuites=false_hooks=false', 'noBabel');
+    runBench('test=syncHeavyFn_nestedSuites=false_hooks=false', 'babel=false');
     break;
   case 'all':
     runBench();

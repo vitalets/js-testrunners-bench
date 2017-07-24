@@ -13,11 +13,15 @@ module.exports = class Measurer {
     this._runConfig = runConfig;
     this._runners = runners;
     this._result = {
-      name: `${genConfig.name} (${runConfig.name})`,
+      name: `${genConfig.name}_${runConfig.name}`,
       genConfig,
       runConfig,
       runs: [],
     };
+  }
+
+  get result() {
+    return this._result;
   }
 
   measure() {

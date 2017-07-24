@@ -31,11 +31,10 @@ exports.printRunners = function (runConfigs) {
   console.log('');
 };
 
-exports.printMeasurementHeader = function (genConfig, runConfig) {
-  const {files, tests, name} = genConfig;
-  console.log(`${chalk.bold('Tests type:')} ${genConfig.name.replace(/_/g, ', ')}`);
+exports.printMeasurementHeader = function (result) {
+  const {files, tests} = result.genConfig;
+  console.log(`${chalk.bold('Bench type:')} ${result.name.replace(/_/g, ', ')}`);
   console.log(`${chalk.bold('Tests count:')} ${tests} (${files} files)`);
-  console.log(`${chalk.bold('Run type:')} ${runConfig.name}`);
 };
 
 exports.printMeasurementResult = function (result) {

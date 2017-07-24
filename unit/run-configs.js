@@ -1,7 +1,7 @@
 
 module.exports = [
   {
-    name: 'noBabel',
+    name: 'babel=false',
     runs: [
       {runner: 'mocha', cmd: 'mocha {path}'},
       {runner: 'jasmine', cmd: 'jasmine JASMINE_CONFIG_PATH=temp/jasmine.json'},
@@ -17,7 +17,7 @@ module.exports = [
     ]
   },
   {
-    name: 'withBabel',
+    name: 'babel=true',
     runs: [
       {runner: 'mocha', cmd: 'mocha {path} --compilers js:babel-register'},
       {runner: 'mocha-parallel-tests', cmd: 'mocha-parallel-tests {path} --compilers js:babel-register'},

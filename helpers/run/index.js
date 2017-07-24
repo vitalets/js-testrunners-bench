@@ -7,12 +7,14 @@
  */
 
 const path = require('path');
-const chalk = require('chalk');
+const assert = require('assert');
 const Measurer = require('./measurer');
 const report = require('./report');
 const saveResult = require('./save-result');
 
 module.exports = function run(genConfigs, runConfigs, runners) {
+  assert(genConfigs.length, `Empty genConfigs`);
+  assert(runConfigs.length, `Empty runConfigs`);
   report.printHeader();
   report.printRunners(runConfigs);
   measureRunners(genConfigs, runConfigs, runners);
@@ -22,11 +24,12 @@ module.exports = function run(genConfigs, runConfigs, runners) {
 function measureRunners(genConfigs, runConfigs, runners) {
   genConfigs.forEach(genConfig => {
     runConfigs.forEach(runConfig => {
-      report.printMeasurementHeader(genConfig, runConfig);
-      const result = new Measurer(genConfig, runConfig, runners).measure();
-      report.printMeasurementResult(result);
+      const measurer = new Measurer(genConfig, runConfig, runners);
+      report.printMeasurementHeader(measurer.result);
+      measurer.measure();
+      report.printMeasurementResult(measurer.result);
       //if (process.env.SAVE_BENCH) {
-        saveResult(result);
+        saveResult(measurer.result);
       //}
     });
   });
