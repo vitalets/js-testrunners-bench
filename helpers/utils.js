@@ -1,4 +1,6 @@
 
+const {exec} = require('shelljs');
+
 /**
  * Expands array props of object
  * Example:
@@ -36,3 +38,39 @@ exports.expandArrayProps = function expandArrayProps(obj) {
     return [obj];
   }
 };
+
+/**
+ * Measures CMD execution time
+ *
+ * @param {String} cmd
+ * @param {Number} [count=1] count of runs
+ * @returns {Number}
+ */
+exports.measureCmd = function measureCmd(cmd, count = 1) {
+  const values = [];
+  for (let i = 0; i < count; i++) {
+    const proc = exec(`time ${cmd}`, {silent: true});
+    assertCmdOutput(cmd, proc.stderr);
+    assertCmdOutput(cmd, proc.stdout);
+
+    const matches = proc.stderr.match(/real\s+([0-9]+)m([0-9\.]+)s/);
+    const minutes = parseInt(matches[1], 10);
+    const seconds = parseFloat(matches[2]);
+    const total = minutes * 60 + seconds;
+    values.push(total);
+  }
+  const sum = values.reduce((r, value) => r + value, 0);
+  return sum / count;
+};
+
+function assertCmdOutput(cmd, output) {
+  // if (!output) {
+  //   console.log(`Output is empty! COMMAND: ${cmd}`);
+  //   process.exit(1);
+  // }
+  if (/error|exception/i.test(output)) {
+    console.log(output);
+    console.log(`Error in output! COMMAND: ${cmd}`);
+    process.exit(1);
+  }
+}

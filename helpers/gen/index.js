@@ -3,13 +3,11 @@
  */
 
 const fs = require('fs-extra');
-const expandConfig = require('../expand-config');
 const Generator = require('./generator');
 
-module.exports = function gen(config, runners) {
-  fs.emptyDirSync(config.path);
-  const expandedConfigs = expandConfig(config);
-  expandedConfigs.forEach(config => {
+module.exports = function gen(configs, runners) {
+  fs.emptyDirSync(configs[0].basePath);
+  configs.forEach(config => {
     runners.forEach(runner => {
       new Generator(config, runner).generate();
     });

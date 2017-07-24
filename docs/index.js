@@ -25,10 +25,10 @@ createCharts();
 
 function createCharts() {
   Object.keys(data).sort(sorter).forEach(key => {
-    const testsCount = data[key].testsCount;
-    const title = `${testsCount} ${getReadableName(key)}`;
+    const readableName = key.replace(/_/g, ', ');
+    const title = `${data[key].genConfig.tests} ${readableName}`;
     createContentsLink(key, title);
-    createChart(key, title, data[key].result);
+    createChart(key, title, data[key].runs);
   });
 }
 
@@ -36,9 +36,9 @@ function createChart(key, title, runs) {
   const datasets = [];
   const labels = [];
   runs.forEach((run, index) => {
-    labels.push(run.runner);
+    labels.push(run.label);
     datasets.push({
-      label: run.runner,
+      label: run.label,
       data: getData(index, run.time),
       backgroundColor: colors[index],
     });

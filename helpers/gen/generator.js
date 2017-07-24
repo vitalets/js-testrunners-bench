@@ -3,13 +3,13 @@
  */
 const fs = require('fs-extra');
 const path = require('path');
-const randomizer = require('../randomizer');
+const randomizer = require('./randomizer');
 
 module.exports = class Generator {
   constructor(config, runner) {
     this._config = config;
     this._runner = runner;
-    this._outPath = path.join(config.path, config.name, runner.name);
+    this._outPath = path.join(config.outPath, runner.name);
   }
 
   generate() {

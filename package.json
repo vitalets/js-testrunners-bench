@@ -7,8 +7,9 @@
     "email": "noginsk@rambler.ru"
   },
   "scripts": {
-    "unit-gen": "node unit/gen",
-    "unit-bench": "npm run unit-bench-sync",
+    "unit-gen": "node ./unit gen",
+    "unit-run": "node ./unit run",
+    "unit-conf": "node ./unit conf",
     "unit-bench-sync": "node commands/bench unit sync_hooks=0_nestedSuites=0 'no Babel'",
     "unit-bench-async": "node commands/bench unit async_delay=0-10_hooks=0_nestedSuites=0 'no Babel'",
     "unit-bench-sync-all": "node commands/bench unit sync",
@@ -18,7 +19,8 @@
     "func-bench-load-page": "node commands/bench functional load-page_delay=0-200",
     "selenium": "selenium-standalone start",
     "static": "http-server ./functional/static",
-    "set-write-mode": "export BENCH_WRITE=1"
+    "set-save-results": "export SAVE_BENCH=1",
+    "unset-save-results": "unset SAVE_BENCH"
   },
   "dependencies": {
     "ava": "^0.19.1",
