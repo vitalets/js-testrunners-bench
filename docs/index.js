@@ -3,8 +3,6 @@ function log(s) {
   document.getElementById('log').textContent += String(s);
 }
 
-// log(window.outerHeight + ' - ' + document.documentElement.clientHeight+ '-' + window.devicePixelRatio);
-
 // generate colors: http://tools.medialab.sciences-po.fr/iwanthue/index.php
 const colors = [
   "#3592ff",
@@ -21,48 +19,70 @@ const colors = [
   "#883c26",
 ];
 
-createCharts();
+const chart = document.getElementById('chart');
+const filterForm = document.getElementById('filter');
 
-function createCharts() {
-  Object.keys(data).sort(sorter).forEach(key => {
-    const readableName = key.replace(/_/g, ', ');
-    const title = `${data[key].genConfig.tests} ${readableName}`;
-    createContentsLink(key, title);
-    createChart(key, title, data[key].runs);
+submitOnChange();
+const benchKey = getKeyFromUrl() || Object.keys(data)[0];
+populateForm(benchKey);
+update(benchKey);
+
+function submitOnChange() {
+  filterForm.addEventListener('change', () => {
+    filterForm.submit();
   });
 }
 
-function createChart(key, title, runs) {
-  const datasets = [];
-  const labels = [];
-  runs.forEach((run, index) => {
-    labels.push(run.label);
-    datasets.push({
+function populateForm(benchKey) {
+  benchKey
+    .split('_')
+    .map(str => str.split('='))
+    .forEach(([name, value]) => filterForm.elements[name].value = value);
+}
+
+function update(benchKey) {
+  chart.innerHTML = '';
+  const benchData = data[benchKey];
+  if (!benchData) {
+    showNoBench();
+  } else {
+    const title = getTitle(benchData);
+    const datasets = getDatasets(benchData);
+    const labels = getLabels(benchData);
+    drawChart(title, labels, datasets);
+  }
+}
+
+function getKeyFromUrl() {
+  const url = new URL(location.href);
+  return url.search.slice(1).replace(/\&/g, '_');
+}
+
+function getTitle(benchData) {
+  return `${benchData.genConfig.tests} ${benchData.name.replace(/_/g, ', ')}`;
+}
+
+function getLabels(benchData) {
+  return benchData.runs.map(run => run.label);
+}
+
+function getDatasets(benchData) {
+  return benchData.runs.map((run, index) => {
+    return {
       label: run.label,
-      data: getData(index, run.time),
+      data: getChartData(index, run.time),
       backgroundColor: colors[index],
-    });
+    };
   });
-  drawChart(key, title, labels, datasets);
 }
 
-function createContentsLink(key, title) {
-  const a = document.createElement('a');
-  a.href = `#${key}`;
-  a.textContent = title;
-  const li = document.createElement('li');
-  li.appendChild(a);
-  document.getElementById('contents').appendChild(li);
-}
-
-function drawChart(key, title, labels, datasets) {
+function drawChart(title, labels, datasets) {
   const wrapper = document.createElement('div');
   const canvas = document.createElement('canvas');
-  canvas.id = key;
   // empiric koefs for normal view on phones and monitors
-  canvas.height = 20 * labels.length + 40;
+  // canvas.height = 20 * labels.length + 40;
   wrapper.appendChild(canvas);
-  document.getElementById('charts').appendChild(wrapper);
+  document.getElementById('chart').appendChild(wrapper);
   new Chart(canvas, {
     type: 'horizontalBar',
     data: {
@@ -105,7 +125,7 @@ function drawChart(key, title, labels, datasets) {
   });
 }
 
-function getData(index, value) {
+function getChartData(index, value) {
   const data = [];
   for(let i = 0; i < index; i++) {
     data.push(0);
@@ -114,23 +134,6 @@ function getData(index, value) {
   return data;
 }
 
-function getReadableName(key) {
-  const map = {
-    'sync': 'synchronous tests',
-    'async': 'asynchronous tests',
-    'hooks=0': 'no hooks',
-    'hooks=1': 'with hooks',
-    'hooks=0.5': 'with 50% hooks',
-    'nestedSuites=0': 'no nested suites',
-    'nestedSuites=1': 'with nested suites',
-    'delay=0': 'delay 0ms',
-    'delay=0-10': 'random delay 0-10ms',
-  };
-  return key.split('_')
-    .map(item => map[item] || item)
-    .join(', ');
-}
-
-function sorter(a, b) {
-  return a > b ? -1 : (a < b ? 1 : 0);
+function showNoBench() {
+  chart.innerHTML = '<div class="nodata">No data for that filter</div>';
 }

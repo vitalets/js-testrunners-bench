@@ -10,17 +10,18 @@ h1 {
     margin-right: 15%;
 }
 
-a {
-    text-decoration: none;
+#filter {
+    text-align: center;
 }
 
-#contents > li {
-    margin-bottom: 20px;
-}
-
-#charts > * {
+#chart > * {
     position: relative;
     padding: 10px 0;
+}
+
+.nodata {
+    font-weight: bold;
+    text-align: center;
 }
 
 .top {
