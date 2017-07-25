@@ -28,15 +28,4 @@ module.exports = [
       {label: 'jest (node)', runner: 'jest', cmd: 'jest --env=node {path}'},
     ]
   },
-  {
-    name: 'AVA',
-    runs: [
-      {label: 'ava (serial)', runner: 'ava', cmd: 'ava {path} --serial'},
-      {label: 'ava (default)', runner: 'ava', cmd: 'ava {path}'},
-      {label: 'ava (concurrency=2)', runner: 'ava', cmd: 'ava {path} --concurrency=2'},
-      {label: 'ava (concurrency=4)', runner: 'ava', cmd: 'ava {path} --concurrency=4'},
-      {label: 'ava (concurrency=50)', runner: 'ava', cmd: 'ava {path} --concurrency=50'},
-      {label: 'ava (no-power-assert)', runner: 'ava', cmd: 'ava {path} --no-power-assert'},
-    ]
-  },
 ];

@@ -8,7 +8,9 @@ module.exports = expandConfig({
   basePath: 'tests/unit',
   files: 50,
   nestedSuites: [false, true],
-  hooks: [false, true],
+  hooks: false,
+  // hooks does not have big impact on performance
+  // hooks: [false, true],
   suitesInSuite: 2,
   testsInSuite: 5,
   test: [

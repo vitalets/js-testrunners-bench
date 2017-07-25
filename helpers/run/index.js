@@ -1,9 +1,5 @@
 /**
- * Runs bench for all runners for particular config
- * Example of call:
- * ```
- * node utils/bench unit async
- * ```
+ * Runs bench for combination of genConfigs + runConfigs.
  */
 
 const path = require('path');
@@ -28,28 +24,9 @@ function measureRunners(genConfigs, runConfigs, runners) {
       report.printMeasurementHeader(measurer.result);
       measurer.measure();
       report.printMeasurementResult(measurer.result);
-      //if (process.env.SAVE_BENCH) {
+      if (process.env.SAVE_BENCH) {
         saveResult(measurer.result);
-      //}
+      }
     });
   });
 }
-
-/*
-paths.setTestingType(testingType);
-const expandedConfigs = configUtils.getExpandedConfigs(configs, configName);
-assert(expandedConfigs.length, `No configs found for: ${configName}`);
-report.printHeader(testingType);
-report.printRunners(expandedConfigs[0]);
-expandedConfigs.forEach(mesureConfig);
-report.printFooter();
-
-function mesureConfig(config) {
-  report.printConfigHeader(config);
-  const result = new Executer(config, runners).mesure(benchName);
-  report.printConfigResult(result);
-  if (process.env.BENCH_WRITE) {
-    report.storeResult(config, result);
-  }
-}
-*/
