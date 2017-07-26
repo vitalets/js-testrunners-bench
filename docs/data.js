@@ -1491,23 +1491,23 @@ const data = {
     "runs": [
       {
         "label": "jest (node)",
-        "time": "2.91"
+        "time": "2.93"
       },
       {
         "label": "jest (jsdom)",
-        "time": "5.10"
+        "time": "4.08"
       },
       {
         "label": "mocha-parallel-tests",
-        "time": "5.20"
-      },
-      {
-        "label": "mocha",
-        "time": "6.12"
+        "time": "5.13"
       },
       {
         "label": "jasmine",
-        "time": "890"
+        "time": "5.19"
+      },
+      {
+        "label": "mocha",
+        "time": "5.35"
       }
     ]
   }
