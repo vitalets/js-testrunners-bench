@@ -15,8 +15,8 @@ The benchmark for running the same tests on the most popular JavaScript test-run
 * [QUnit](https://github.com/qunitjs/qunit)
 * [lab](https://github.com/hapijs/lab)
 
-### Bench conditions
-Benchmark allows to measure execution times of all runners for every combination of following conditions:
+### Benchmark conditions
+This benchmark measures execution time for every combination of following conditions:
 
 #### 1. Test types
 * Synchronous empty test:
