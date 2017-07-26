@@ -15,10 +15,47 @@ The benchmark for running the same tests on the most popular JavaScript test-run
 * [QUnit](https://github.com/qunitjs/qunit)
 * [lab](https://github.com/hapijs/lab)
 
+### Bench conditions
+Benchmark allows to measure execution times of all runners for every combination of following conditions:
+
+#### 1. Test types
+* Synchronous empty test:
+  ```js
+  function () {}
+  ```
+* Synchronous heavy test:
+  ```js
+  function () {
+    for (let i = 0; i < 10000; i++) {
+      new Date();
+    }
+  }
+  ```
+* Asynchronous empty test with zero delay:
+  ```js
+  function (done) {
+    setTimeout(done, 0);
+  }
+  ```
+* Asynchronous empty test with random delay:
+  ```js
+  function (done) {
+    setTimeout(done, Math.round(Math.random() * 10));
+  }
+  ```
+
+#### 2. Tests structure
+* With nested suites 
+* Without nested suites
+
+#### 3. Run types
+* With Babel transpiling 
+* Without Babel transpiling
+  
 ### Latest results
 https://vitalets.github.io/js-testrunners-bench/index.html
 
-### Usage
+### Run yourself
 1. Clone the repo:
     ```bash
     git clone https://github.com/vitalets/js-testrunners-bench.git
@@ -32,30 +69,21 @@ https://vitalets.github.io/js-testrunners-bench/index.html
 
 3. Generate tests:
     ```bash
-    node commands/generate unit
+    node unit gen
     ```
     After run check that `/tests` directory is created and filled with test-files.
     
 4. Run benchmark:
     ```bash
-    node commands/bench unit [testParams] [benchType]
+    node unit run [testsType] [runType]
     ```
     Examples:
     ```bash
-    # Synchronous tests with no hooks, no nested suites and no Babel transpiling
-    node commands/bench unit sync_hooks=0_nestedSuites=0 'no Babel'
+    # Synchronous empty tests without nested suites and without Babel
+    node unit run test=syncEmptyFn_nestedSuites=false babel=false
     
-    # Synchronous tests with no hooks, no nested suites and with Babel transpiling
-    node commands/bench unit sync_hooks=0_nestedSuites=0 'with Babel'
-    
-    # Synchronous tests with hooks, with nested suites and no Babel transpiling
-    node commands/bench unit sync_hooks=1_nestedSuites=1 'no Babel'
-    
-    # Asynchronous tests with random delay 0-10ms, no hooks, no nested suites, no Babel
-    node commands/bench unit async_delay=0-10_hooks=0_nestedSuites=0 'no Babel'
-
-    # Asynchronous tests with random delay 0-10ms with hooks and nested suites, no Babel
-    node commands/bench unit async_delay=0-10_hooks=1_nestedSuites=1 'no Babel'
+    # Asynchronous tests with random delay 0-10ms with nested suites and Babel
+    node unit run test=asyncEmptyFnRandomDelay_nestedSuites=true babel=true
     
     etc..
     ```
@@ -63,54 +91,51 @@ https://vitalets.github.io/js-testrunners-bench/index.html
 <details>
  <summary>Example output:</summary>
 
-    > node commands/bench unit sync_hooks=0_nestedSuites=0 'no Babel'
-    
-    JavaScript test-runners benchmark.
-    Testing type: unit
+    > node unit run test=syncEmptyFn_nestedSuites=false babel=false
+    JavaScript test-runners benchmark
     System: darwin x64 4 cpu(s) node v7.2.0
-    Date: Wed Jun 14 2017
+    Date: Wed Jul 26 2017
     
     RUNNER               VERSION
     mocha                3.4.2  
+    jasmine              2.6.0  
     mocha.parallel       0.15.2 
     mocha-parallel-tests 1.2.9  
-    jasmine              2.6.0  
-    tape                 4.6.3  
     qunit                2.3.3  
-    lab                  13.1.0 
+    tape                 4.6.3  
     tap                  10.3.3 
-    jest                 20.0.4 
+    lab                  13.1.0 
     ava                  0.19.1 
+    jest                 20.0.4 
     
-    sync_hooks=0_nestedSuites=0: running 250 tests in 50 files:
-    
-    benchName: no Babel
-    Running: mocha ( mocha tests/unit/sync/hooks=0_nestedSuites=0/mocha )
-    Running: mocha.parallel ( mocha tests/unit/sync/hooks=0_nestedSuites=0/mocha.parallel )
-    Running: mocha-parallel-tests ( mocha-parallel-tests tests/unit/sync/hooks=0_nestedSuites=0/mocha-parallel-tests )
-    Running: jasmine ( jasmine JASMINE_CONFIG_PATH=temp/jasmine.json )
-    Running: tape ( tape tests/unit/sync/hooks=0_nestedSuites=0/tape/*.js )
-    Running: qunit ( qunit tests/unit/sync/hooks=0_nestedSuites=0/qunit )
-    Running: lab ( lab --parallel tests/unit/sync/hooks=0_nestedSuites=0/lab )
-    Running: tap ( tap tests/unit/sync/hooks=0_nestedSuites=0/tap --jobs-auto )
-    Running: jest ( jest tests/unit/sync/hooks=0_nestedSuites=0/jest )
-    Running: ava ( ava tests/unit/sync/hooks=0_nestedSuites=0/ava --concurrency=4 )
-    
-    benchName: no Babel
-    RUNNER               TIME 
-    jasmine              0.220
-    tape                 0.288
-    mocha                0.322
-    qunit                0.330
-    lab                  0.378
-    mocha.parallel       0.515
-    mocha-parallel-tests 0.552
-    jest                 3.41 
-    tap                  5.93 
-    ava                  10.1 
+    Bench type: test=syncEmptyFn, nestedSuites=false, babel=false
+    Tests count: 250 (50 files)
+    Running: mocha, cmd: mocha tests/unit/test=syncEmptyFn/nestedSuites=false/mocha
+    Running: jasmine, cmd: jasmine JASMINE_CONFIG_PATH=temp/jasmine.json
+    Running: mocha.parallel, cmd: mocha tests/unit/test=syncEmptyFn/nestedSuites=false/mocha.parallel
+    Running: mocha-parallel-tests, cmd: mocha-parallel-tests tests/unit/test=syncEmptyFn/nestedSuites=false/mocha-parallel-tests
+    Running: qunit, cmd: qunit tests/unit/test=syncEmptyFn/nestedSuites=false/qunit
+    Running: tape, cmd: tape tests/unit/test=syncEmptyFn/nestedSuites=false/tape/*.js
+    Running: tap, cmd: tap tests/unit/test=syncEmptyFn/nestedSuites=false/tap --jobs-auto
+    Running: lab, cmd: lab --parallel tests/unit/test=syncEmptyFn/nestedSuites=false/lab
+    Running: ava, cmd: ava tests/unit/test=syncEmptyFn/nestedSuites=false/ava --concurrency=4
+    Running: jest (jsdom), cmd: jest --env=jsdom tests/unit/test=syncEmptyFn/nestedSuites=false/jest
+    Running: jest (node), cmd: jest --env=node tests/unit/test=syncEmptyFn/nestedSuites=false/jest
+    Result:
+    LABEL                TIME 
+    jasmine              0.205
+    tape                 0.273
+    qunit                0.332
+    mocha                0.346
+    mocha.parallel       0.420
+    lab                  0.429
+    mocha-parallel-tests 0.471
+    jest (node)          1.84 
+    jest (jsdom)         3.78 
+    tap                  6.32 
+    ava                  8.34 
     
     Done.
-    
 </details>
 
 ## Functional tests
