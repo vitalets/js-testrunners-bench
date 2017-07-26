@@ -1,37 +1,52 @@
 body {
     color: #333333;
     font-family: Arial, "Times New Roman", serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 15px;
+    box-sizing: border-box;
 }
 
 h1 {
-    text-align: center;
-    margin-left: 15%;
-    margin-right: 15%;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
-#filter {
-    text-align: center;
+label {
+    display: block;
+    margin: 5px;
 }
 
-#chart > * {
+@media (min-width: 640px) {
+    label {
+        display: inline;
+    }
+}
+
+.chart {
     position: relative;
-    padding: 10px 0;
+    align-self: stretch;
+    margin: 15px 0;
+}
+
+@media (min-width: 640px) {
+    .chart {
+        align-self: center;
+        width: 70%;
+    }
+}
+
+.chart-container {
+    position: relative;
+    height: 50vh;
 }
 
 .nodata {
     font-weight: bold;
-    text-align: center;
-}
-
-.top {
-    margin: 10px 0;
-}
-
-.me {
-    color: gray;
 }
 
 footer {
-    text-align: center;
+    font-size: 0.9em;
+    align-self: flex-end;
 }

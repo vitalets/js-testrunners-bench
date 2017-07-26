@@ -1,6 +1,6 @@
 
 function log(s) {
-  document.getElementById('log').textContent += String(s);
+  document.querySelector('.log').textContent += String(s);
 }
 
 // generate colors: http://tools.medialab.sciences-po.fr/iwanthue/index.php
@@ -19,8 +19,8 @@ const colors = [
   "#883c26",
 ];
 
-const chart = document.getElementById('chart');
-const filterForm = document.getElementById('filter');
+const chart = document.querySelector('.chart');
+const filterForm = document.querySelector('.filter');
 
 submitOnChange();
 const benchKey = getKeyFromUrl() || Object.keys(data)[0];
@@ -77,12 +77,8 @@ function getDatasets(benchData) {
 }
 
 function drawChart(title, labels, datasets) {
-  const wrapper = document.createElement('div');
   const canvas = document.createElement('canvas');
-  // empiric koefs for normal view on phones and monitors
-  // canvas.height = 20 * labels.length + 40;
-  wrapper.appendChild(canvas);
-  document.getElementById('chart').appendChild(wrapper);
+  chart.appendChild(canvas);
   new Chart(canvas, {
     type: 'horizontalBar',
     data: {
